@@ -1,7 +1,7 @@
 # Silk.NET F# Examples
 
 The new upcoming OpenGL library from Ultz, [Silk.NET](https://github.com/Ultz/Silk.NET)
-promises to bring together bindings for OpenGL (Graphics), OpenAL (Audio), Input and 
+promises to bring together bindings for OpenGL and Vulkan (Graphics), OpenAL (Audio), Input and 
 Windowing (GLFW3) into a single, high speed library.
 
 Some examples are provided in the project that target C#. Here I've converted them to F#

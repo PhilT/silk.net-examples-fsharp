@@ -37,7 +37,13 @@ dotnet run
 
 ## InputTest
 
-[to implement]
+This project tests various input devices. Keyboard, mouse, gamepads and joysticks
+are all covered. Displays all input in the console.
+
+```
+cd input_test
+dotnet run
+```
 
 ## GLFW3
 

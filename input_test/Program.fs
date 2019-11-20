@@ -49,12 +49,16 @@ let main =
     printfn "J%d> %A down." j.Index b.Name
   )
 
-  let keyboardOnKeyDown = Action<IKeyboard, Key>(fun k key ->
+  let keyboardOnKeyDown = Action<IKeyboard, Key, _>(fun k key _ ->
     printfn "K%d> %A down." k.Index key
   )
 
-  let keyboardOnKeyUp = Action<IKeyboard, Key>(fun k key ->
+  let keyboardOnKeyUp = Action<IKeyboard, Key, _>(fun k key _ ->
     printfn "K%d> %A up." k.Index key
+  )
+
+  let keyboardOnKeyChar = Action<IKeyboard, Char>(fun k c ->
+    printfn "K%d> %A received." k.Index c
   )
 
   let mouseOnMouseMove = Action<IMouse, PointF>(fun m p ->
@@ -114,9 +118,11 @@ let main =
     if isConnected then
       keyboard.add_KeyDown(keyboardOnKeyDown)
       keyboard.add_KeyUp(keyboardOnKeyUp)
+      keyboard.add_KeyChar(keyboardOnKeyChar)
     else
       keyboard.remove_KeyDown(keyboardOnKeyDown)
       keyboard.remove_KeyUp(keyboardOnKeyUp)
+      keyboard.remove_KeyChar(keyboardOnKeyChar)
 
     printf "    Buttons: "
     keyboard.SupportedKeys

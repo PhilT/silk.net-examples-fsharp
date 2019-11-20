@@ -7,9 +7,8 @@
   <ItemGroup>
     <Compile Include="Program.fs" />
   </ItemGroup>
-  <!-- TODO: Once Silk.NET preview 3 is available we'll use nuget packages -->
   <ItemGroup>
-    <ProjectReference Include="C:\Users\Phil\Sync\phil\code\Silk.NET\src\Windowing\Silk.NET.Windowing\Silk.NET.Windowing.csproj" />
-    <ProjectReference Include="C:\Users\Phil\Sync\phil\code\Silk.NET\src\OpenGL\Silk.NET.OpenGL\Silk.NET.OpenGL.csproj" />
+    <PackageReference Include="Silk.NET.OpenGL" Version="1.0.0-preview3" />
+    <PackageReference Include="Silk.NET.Windowing" Version="1.0.0-preview3" />
   </ItemGroup>
 </Project>

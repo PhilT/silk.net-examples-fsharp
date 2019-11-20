@@ -7,10 +7,9 @@
   <ItemGroup>
     <Compile Include="Program.fs" />
   </ItemGroup>
-  <!-- TODO: Once Silk.NET preview 3 is available we'll use nuget packages -->
   <ItemGroup>
-    <ProjectReference Include="C:\Users\Phil\Sync\phil\code\Silk.NET\src\Windowing\Silk.NET.Windowing\Silk.NET.Windowing.csproj" />
-    <ProjectReference Include="C:\Users\Phil\Sync\phil\code\Silk.NET\src\Input\Silk.NET.Input\Silk.NET.Input.csproj" />
-    <ProjectReference Include="C:\Users\Phil\Sync\phil\code\Silk.NET\src\Input\Silk.NET.Input.Desktop\Silk.NET.Input.Desktop.csproj" />
+    <PackageReference Include="Silk.NET.Input" Version="1.0.0-preview3" />
+    <PackageReference Include="Silk.NET.Input.Desktop" Version="1.0.0-preview3" />
+    <PackageReference Include="Silk.NET.Windowing" Version="1.0.0-preview3" />
   </ItemGroup>
 </Project>

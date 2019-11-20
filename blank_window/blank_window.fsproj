@@ -8,6 +8,6 @@
     <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="C:\Users\Phil\Sync\phil\code\Silk.NET\src\Windowing\Silk.NET.Windowing\Silk.NET.Windowing.csproj" />
+    <PackageReference Include="Silk.NET.Windowing" Version="1.0.0-preview3" />
   </ItemGroup>
 </Project>

@@ -68,7 +68,7 @@ let main =
     gl.UseProgram(shaderHandle)
     vertexArrayObject <- gl.GenVertexArray()
     gl.BindVertexArray(vertexArrayObject)
-    gl.VertexAttribPointer(0u, 3, GLEnum.Float, false, uint32 (3 * sizeof<float32>), 0)
+    gl.VertexAttribPointer(0u, 3, GLEnum.Float, false, uint32 (3 * sizeof<float32>), IntPtr.Zero.ToPointer())
     gl.EnableVertexAttribArray(0u)
     gl.BindBuffer(GLEnum.ArrayBuffer, vertexBufferObject)
 

@@ -1,18 +1,13 @@
 # Silk.NET F# Examples
 
-The new upcoming OpenGL library from Ultz, [Silk.NET](https://github.com/Ultz/Silk.NET)
-promises to bring together bindings for OpenGL and Vulkan (Graphics), OpenAL (Audio), Input and 
+Updated to work with Silk.NET 1.0.1 and .NET Core 3.1.
+
+The new OpenGL library from Ultz, [Silk.NET](https://github.com/Ultz/Silk.NET)
+brings together bindings for OpenGL and Vulkan (Graphics), OpenAL (Audio), Input and 
 Windowing (GLFW3) into a single, high speed library.
 
 Some examples are provided in the project that target C#. Here I've converted them to F#
 to test feasibility in this language.
-
-### NOTE: Direct references to Silk.NET.Windowing and Silk.NET.OpenGL
-
-Currently the project references the csproj files from Silk.NET directly as
-the current release version (preview 2) has some issues with the current examples
-in F#. preview 3 is due out in about a week so I'll update to Paket references
-after that date.
 
 ## Blank Window
 

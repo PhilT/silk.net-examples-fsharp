@@ -166,7 +166,7 @@ let main =
     | _ -> ()
 
   let load () =
-    let input = window.GetInput()
+    let input = window.CreateInput()
     input.add_ConnectionChanged (Action<IInputDevice, bool> doConnect)
     printfn "Now, go press buttons in the window and you'll see the feedback here."
 

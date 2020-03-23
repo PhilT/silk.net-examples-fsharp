@@ -49,50 +49,49 @@ let main =
     0.0f;  0.5f; 0.0f  // Top vertex
   |]
 
-  let mutable vertexBufferObject = 0u
-  let mutable vertexArrayObject = 0u
-  let mutable gl = null
-  let mutable shaderHandle = 0u
+  let window = Window.Create(WindowOptions.Default)
+  window.Title <- "A Triangle"
 
-  let load () =
-    gl <- GL.GetApi()
+  window.add_Load (fun () -> 
+    let gl = GL.GetApi()
+
+    let vertexBufferObject = gl.GenBuffer()
+    let vertexArrayObject = gl.GenVertexArray()
+    let shaderHandle = createShader "shader.vert" "shader.frag" gl
+
     gl.ClearColor(0.2f, 0.3f, 0.3f, 1.0f)
-    vertexBufferObject <- gl.GenBuffer()
     gl.BindBuffer(GLEnum.ArrayBuffer, vertexBufferObject)
     use floatPtr = fixed vertices
     let voidPtr = floatPtr |> NativePtr.toVoidPtr
     let size = uint32 (vertices.Length * sizeof<float32>)
     gl.BufferData(GLEnum.ArrayBuffer, size, voidPtr, GLEnum.StaticDraw)
 
-    shaderHandle <- createShader "shader.vert" "shader.frag" gl
     gl.UseProgram(shaderHandle)
-    vertexArrayObject <- gl.GenVertexArray()
     gl.BindVertexArray(vertexArrayObject)
     gl.VertexAttribPointer(0u, 3, GLEnum.Float, false, uint32 (3 * sizeof<float32>), IntPtr.Zero.ToPointer())
     gl.EnableVertexAttribArray(0u)
     gl.BindBuffer(GLEnum.ArrayBuffer, vertexBufferObject)
 
-  let render _ =
-    gl.Clear(uint32 GLEnum.ColorBufferBit)
-    gl.UseProgram(shaderHandle)
-    gl.BindVertexArray(vertexArrayObject)
-    gl.DrawArrays(GLEnum.Triangles, 0, 3u)
+    window.add_Render(fun _ -> 
+      gl.Clear(uint32 GLEnum.ColorBufferBit)
+      gl.UseProgram(shaderHandle)
+      gl.BindVertexArray(vertexArrayObject)
+      gl.DrawArrays(GLEnum.Triangles, 0, 3u)
+    )
 
-  let resize (size: Size) =
-    gl.Viewport(size: Size)
+    window.add_Resize(fun size ->
+      gl.Viewport(size: Size)
+    )
 
-  let closing () =
-    gl.BindBuffer(GLEnum.ArrayBuffer, 0u)
-    gl.BindVertexArray(0u)
-    gl.UseProgram(0u)
-    gl.DeleteBuffer(vertexBufferObject)
-    gl.DeleteVertexArray(vertexArrayObject)
-    gl.DeleteProgram(shaderHandle)
+    window.add_Closing(fun () -> 
+      gl.BindBuffer(GLEnum.ArrayBuffer, 0u)
+      gl.BindVertexArray(0u)
+      gl.UseProgram(0u)
+      gl.DeleteBuffer(vertexBufferObject)
+      gl.DeleteVertexArray(vertexArrayObject)
+      gl.DeleteProgram(shaderHandle)
+    )
+  )
 
-  let mutable window = Window.Create(WindowOptions.Default)
-  window.add_Load (fun () -> load ())
-  window.add_Render (fun delta -> render delta)
-  window.add_Resize (fun s -> resize s)
-  window.add_Closing (fun () -> closing ())
   window.Run()
   0
